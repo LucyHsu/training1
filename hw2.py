@@ -1,4 +1,3 @@
-
 import sys
 
 FileName = sys.argv[1]
@@ -17,6 +16,8 @@ for i in range ( 0 , 3 ):
 	if li[k] > li[k+1]:
 	    li[k],li[k+1] = li[k+1],li[k]
 
-print li[ ( len(li) - 3 ) : ]
+print li[-1],'\n',li[-2],'\n',li[-3],'\n'
+
+
 
  
