@@ -1,30 +1,19 @@
 import sys 
 
 
-FileName = sys.argv[1]
-f = open(FileName)
-str = f.read()
-str = str.strip('"\n')   # => 'CDEF","ABC","FIJK'
-li = str.split('","')    # => ['CDEF', 'ABC', 'FIJK']
+file_name = sys.argv[1]
+f = open(file_name)
+string_in_file = f.read().strip('"\n')  # => 'CDEF","ABC","FIJK'
+list_in_file = string_in_file.split('","')    # => ['CDEF', 'ABC', 'FIJK']
 
-for i in range(len(li)-1):
-    if li[i]>li[i+1]:
-	li[i],li[i+1] = li[i+1],li[i]  # => ['ABC', 'CDEF', 'FIJK']
+list_sorted = sorted(list_in_file)  # => ['ABC', 'CDEF', 'FIJK']
 
-list = []
+A_offset = 64
 
-for i in range(len(li)):
-    temp_str = li[i]
-    temp_list = []
-    for k in range(0,len(temp_str)):
-	temp_list.append(temp_str[k])
-    list.append(temp_list)             # => [['A', 'B', 'C'], ['C', 'D', 'E', 'F'], ['F', 'I', 'J', 'K']]
-
-
-for i in range(len(li)):
-    temp_list= list.pop()
+for index, value in enumerate(list_sorted):
     sum = 0
-    for k in range(len(temp_list)):
-	sum += ord(temp_list[k])-64
-    print li[(len(li)-i-1)],' score = ', sum*(len(li)-i) 
+    for char_in_value in value:	
+	sum += ord(char_in_value)-A_offset
+    print value,' score= ', sum*(index+1)
+
 
